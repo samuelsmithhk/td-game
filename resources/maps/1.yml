@@ -1,0 +1,314 @@
+board:
+  size:
+    width: 15
+    height: 6
+  spawn:
+    x: 0
+    y: 1
+  goal:
+    x: 14
+    y: 5
+  path:
+    - x: 0
+      y: 1
+    - x: 1
+      y: 1
+    - x: 2
+      y: 1
+    - x: 3
+      y: 1
+    - x: 4
+      y: 1
+    - x: 5
+      y: 1
+    - x: 6
+      y: 1
+    - x: 7
+      y: 1
+    - x: 8
+      y: 1
+    - x: 9
+      y: 1
+    - x: 9
+      y: 2
+    - x: 10
+      y: 1
+    - x: 11
+      y: 1
+    - x: 12
+      y: 1
+    - x: 13
+      y: 1
+    - x: 13
+      y: 2
+    - x: 13
+      y: 3
+    - x: 12
+      y: 3
+    - x: 11
+      y: 3
+    - x: 10
+      y: 3
+    - x: 9
+      y: 3
+    - x: 8
+      y: 3
+    - x: 7
+      y: 3
+    - x: 6
+      y: 3
+    - x: 5
+      y: 3
+    - x: 5
+      y: 4
+    - x: 4
+      y: 3
+    - x: 3
+      y: 3
+    - x: 2
+      y: 3
+    - x: 1
+      y: 3
+    - x: 1
+      y: 4
+    - x: 1
+      y: 5
+    - x: 2
+      y: 5
+    - x: 3
+      y: 5
+    - x: 4
+      y: 5
+    - x: 5
+      y: 5
+    - x: 6
+      y: 5
+    - x: 7
+      y: 5
+    - x: 8
+      y: 5
+    - x: 9
+      y: 5
+    - x: 10
+      y: 5
+    - x: 11
+      y: 5
+    - x: 12
+      y: 5
+    - x: 13
+      y: 5
+    - x: 14
+      y: 5
+
+rounds:
+
+  # round 1
+  - critters:
+      - type: base
+        health: 100
+        speed: 1
+        count: 5
+
+  # round 2
+  - critters:
+      - type: base
+        health: 105
+        speed: 1
+        count: 6
+
+  # round 3
+  - critters:
+      - type: base-boss
+        health: 250
+        speed: 1
+        count: 1
+
+  # round 4
+  - critters:
+      - type: speeder
+        health: 105
+        speed: 3
+        count: 8
+
+  # round 5
+  - critters:
+      - type: base
+        health: 111
+        speed: 1
+        count: 9
+
+  # round 6
+  - critters:
+      - type: speeder
+        health: 111
+        speed: 3
+        count: 10
+
+  # round 7
+  - critters:
+      - type: speeder-boss
+        health: 250
+        speed: 3
+        count: 1
+
+  # round 8
+  - critters:
+      - type: invisible
+        health: 105
+        speed: 1
+        count: 5
+
+  # round 9
+  - critters:
+      - type: base
+        health: 117
+        speed: 1
+        count: 12
+
+  # round 10
+  - critters:
+      - type: speeder
+        health: 117
+        speed: 3
+        count: 9
+
+  # round 11
+  - critters:
+      - type: invisible
+        health: 111
+        speed: 1
+        count: 6
+
+  # round 12
+  - critters:
+      - type: invisible-boss
+        health: 250
+        speed: 1
+        count: 1
+
+  # round 13
+  - critters:
+      - type: resistant
+        health: 120
+        speed: 1
+        count: 10
+
+  # round 14
+  - critters:
+      - type: base
+        health: 123
+        speed: 2
+        count: 15
+
+  # round 15
+  - critters:
+      - type: speeder
+        health: 117
+        speed: 4
+        count: 12
+
+  # round 16
+  - critters:
+      - type: invisible
+        health: 117
+        speed: 2
+        count: 9
+
+  # round 17
+  - critters:
+      - type: resistant
+        health: 132
+        speed: 1
+        count: 12
+
+  # round 18
+  - critters:
+      - type: resistant-boss
+        health: 300
+        speed: 1
+        count: 1
+
+  # round 19
+  - critters:
+      - type: base
+        health: 130
+        speed: 2
+        count: 25
+
+  # round 20
+  - critters:
+      - type: base
+        health: 150
+        speed: 2
+        count: 50
+
+  # round 21
+  - critters:
+      - type: base
+        health: 160
+        speed: 3
+        count: 40
+      - type: speeder
+        health: 140
+        speed: 5
+        count: 40
+
+  # round 22
+  - critters:
+      - type: base
+        health: 170
+        speed: 3
+        count: 50
+      - type: speeder
+        health: 145
+        speed: 5
+        count: 50
+      - type: invisible
+        health: 120
+        speed: 2
+        count: 25
+
+  # round 23
+  - critters:
+      - type: base
+        health: 180
+        speed: 3
+        count: 60
+      - type: speeder
+        health: 150
+        speed: 5
+        count: 60
+      - type: invisible
+        health: 125
+        speed: 2
+        count: 30
+      - type: resistant
+        health: 200
+        speed: 1
+        count: 50
+
+  # round 24
+  - critters:
+      - type: base
+        health: 180
+        speed: 3
+        count: 250
+
+  # round 25
+  - critters:
+      - type: base-boss
+        health: 600
+        speed: 1
+        count: 1
+      - type: speeder-boss
+        health: 400
+        speed: 3
+        count: 1
+      - type: invisible-boss
+        health: 300
+        speed: 2
+        count: 1
+      - type: resistant-boss
+        health: 800
+        speed: 1
+        count: 1
