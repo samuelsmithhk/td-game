@@ -22,6 +22,10 @@ python td-game.py
 ### Changelog
 
 ### 04/11/2020
+
+* Capping FPS to 30
+
+### 04/11/2020
 Initial commit, existing features:
 
 * 1 map with branching critter paths
