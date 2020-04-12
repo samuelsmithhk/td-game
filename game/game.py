@@ -91,7 +91,7 @@ def init_pygame():
 
 
 def update_fps() -> int:
-    clock_tick = CLOCK.tick()
+    clock_tick = CLOCK.tick(30)
     fps = CLOCK.get_fps()
     pygame.display.set_caption(f"Tower Defense Game. Current FPS = {int(fps)}")
     return clock_tick
