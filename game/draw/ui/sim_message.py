@@ -9,28 +9,27 @@ from map.map import Round
 
 pygame.font.init()
 
-MESSAGE_FONT = pygame.font.SysFont('freesanbold', 20)
+MESSAGE_FONT = pygame.font.SysFont("freesanbold", 20)
 MESSAGE_FONT_COLOR = pygame.Color(0, 0, 0)
-STAT_FONT = pygame.font.SysFont('freesanbold', 20)
+STAT_FONT = pygame.font.SysFont("freesanbold", 20)
 STAT_FONT_COLOR = pygame.Color(0, 0, 0)
 
 BORDER_COLOR = pygame.Color(0, 0, 0)
 BACKGROUND_COLOR = pygame.Color(185, 185, 185)
 
 CRITTER_DISPLAY_ORDER = [
-    'base',
-    'speeder',
-    'invisible',
-    'resistant',
-    'base_boss',
-    'speeder_boss',
-    'invisible_boss',
-    'resistant_boss'
+    "base",
+    "speeder",
+    "invisible",
+    "resistant",
+    "base_boss",
+    "speeder_boss",
+    "invisible_boss",
+    "resistant_boss",
 ]
 
 
 class SimMessage(UIElement):
-
     def __init__(self, rounds: List[Round]):
         super().__init__()
         self.critter_counts = self.calculate_critter_counts(rounds)
@@ -62,14 +61,14 @@ class SimMessage(UIElement):
     @staticmethod
     def load_critter_sprites() -> Dict:
         return {
-            'base': load_sprite("critter_base"),
-            'base_boss': load_sprite("critter_base_boss"),
-            'speeder': load_sprite('critter_speeder'),
-            'speeder_boss': load_sprite('critter_speeder_boss'),
-            'invisible': load_sprite("critter_invisible"),
-            'invisible_boss': load_sprite('critter_invisible_boss'),
-            'resistant': load_sprite('critter_resistant'),
-            'resistant_boss': load_sprite('critter_resistant_boss')
+            "base": load_sprite("critter_base"),
+            "base_boss": load_sprite("critter_base_boss"),
+            "speeder": load_sprite("critter_speeder"),
+            "speeder_boss": load_sprite("critter_speeder_boss"),
+            "invisible": load_sprite("critter_invisible"),
+            "invisible_boss": load_sprite("critter_invisible_boss"),
+            "resistant": load_sprite("critter_resistant"),
+            "resistant_boss": load_sprite("critter_resistant_boss"),
         }
 
     def draw(self, surface, left: int, top: int) -> None:
@@ -106,19 +105,24 @@ class SimMessage(UIElement):
 
         left_offset = left + 15
         for critter_type in CRITTER_DISPLAY_ORDER:
-            top_offset = top + 20 if critter_type.find('boss') != -1 else top + 27
+            top_offset = top + 20 if critter_type.find("boss") != -1 else top + 27
 
             critter_rect = pygame.Rect(left_offset, top_offset, 0, 0)
             surface.blit(self.critter_sprites[critter_type], critter_rect)
 
-            label_left_offset = left_offset + 25 if critter_type.find('boss') != -1 else left_offset + 15
+            label_left_offset = (
+                left_offset + 25
+                if critter_type.find("boss") != -1
+                else left_offset + 15
+            )
 
-            stat_label = STAT_FONT.render(str(critter_counts.get(critter_type, 0)), True, STAT_FONT_COLOR)
+            stat_label = STAT_FONT.render(
+                str(critter_counts.get(critter_type, 0)), True, STAT_FONT_COLOR
+            )
             stat_rect = pygame.Rect(label_left_offset, top + 25, 0, 0)
             surface.blit(stat_label, stat_rect)
 
             left_offset += 60
-
 
     def update_mouse(self, mouse_position, mouse_clicked) -> None:
         pass

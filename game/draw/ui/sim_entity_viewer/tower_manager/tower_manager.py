@@ -1,8 +1,12 @@
 import pygame
 
-from game.draw.ui.sim_entity_viewer.tower_manager.buttons.close_button import CloseButton
+from game.draw.ui.sim_entity_viewer.tower_manager.buttons.close_button import (
+    CloseButton,
+)
 from game.draw.ui.sim_entity_viewer.tower_manager.buttons.sell_button import SellButton
-from game.draw.ui.sim_entity_viewer.tower_manager.buttons.upgrade_button import UpgradeButton
+from game.draw.ui.sim_entity_viewer.tower_manager.buttons.upgrade_button import (
+    UpgradeButton,
+)
 from game.draw.ui.ui_element import UIElement
 from tower.ploppable import Ploppable
 
@@ -11,29 +15,28 @@ BACKGROUND_COLOR = pygame.Color(185, 185, 185)
 STATS_BACKGROUND_COLOR = pygame.Color(205, 205, 205)
 
 pygame.font.init()
-HEADER_FONT = pygame.font.SysFont('freesanbold', 21)
-STAT_FONT = pygame.font.SysFont('freesanbold', 15)
+HEADER_FONT = pygame.font.SysFont("freesanbold", 21)
+STAT_FONT = pygame.font.SysFont("freesanbold", 15)
 
 HEADER_FONT_COLOR = pygame.Color(0, 0, 0)
 STAT_FONT_COLOR = pygame.Color(0, 0, 0)
 
 STATS_DISPLAY_ORDER = [
-    ('damage', 'Damage'),
-    ('reload_time', 'Reload Time'),
-    ('range', 'Range'),
-    ('special', 'Spec')
+    ("damage", "Damage"),
+    ("reload_time", "Reload Time"),
+    ("range", "Range"),
+    ("special", "Spec"),
 ]
 
 CREDITS_DISPLAY_ORDER = [
-    ('rounds', 'Rounds'),
-    ('shots', 'Shots'),
-    ('damage', 'Damage'),
-    ('kills', 'Kills')
+    ("rounds", "Rounds"),
+    ("shots", "Shots"),
+    ("damage", "Damage"),
+    ("kills", "Kills"),
 ]
 
 
 class TowerManager(UIElement):
-
     def __init__(self):
         super().__init__()
         self.tower = None
@@ -60,7 +63,9 @@ class TowerManager(UIElement):
     def draw_tower_name(self, surface, left: int, top: int) -> None:
         tower_definition = self.tower.get_tower_definition()
         tower_name_message = f"{tower_definition.tower_human_readable_name} Tower Level {self.tower.get_current_level()}"
-        tower_name_label = HEADER_FONT.render(tower_name_message, True, HEADER_FONT_COLOR)
+        tower_name_label = HEADER_FONT.render(
+            tower_name_message, True, HEADER_FONT_COLOR
+        )
 
         rectangle = pygame.Rect(left + 5, top + 5, 0, 0)
         surface.blit(tower_name_label, rectangle)
@@ -72,10 +77,14 @@ class TowerManager(UIElement):
         height = 19
         top_offset = 0
         for stat_name, stat_display in STATS_DISPLAY_ORDER:
-            border_rectangle = pygame.Rect(left + 5, top + 25 + top_offset, width, height + 1)
+            border_rectangle = pygame.Rect(
+                left + 5, top + 25 + top_offset, width, height + 1
+            )
             pygame.draw.rect(surface, BORDER_COLOR, border_rectangle)
 
-            background_rectangle = pygame.Rect(left + 6, top + 26 + top_offset, width - 2, height - 1)
+            background_rectangle = pygame.Rect(
+                left + 6, top + 26 + top_offset, width - 2, height - 1
+            )
             pygame.draw.rect(surface, STATS_BACKGROUND_COLOR, background_rectangle)
 
             stat_message = f"{stat_display}: {tower_stats[stat_name]}"
@@ -96,7 +105,9 @@ class TowerManager(UIElement):
             border_rectangle = pygame.Rect(left_offset, top_offset, width, height + 1)
             pygame.draw.rect(surface, BORDER_COLOR, border_rectangle)
 
-            background_rectangle = pygame.Rect(left_offset + 1, top_offset + 1, width - 2, height - 1)
+            background_rectangle = pygame.Rect(
+                left_offset + 1, top_offset + 1, width - 2, height - 1
+            )
             pygame.draw.rect(surface, STATS_BACKGROUND_COLOR, background_rectangle)
 
             credit_message = f"{credit_display}: {tower_credits[credit_name]}"

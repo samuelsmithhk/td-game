@@ -17,9 +17,9 @@ HEALTH_BAR_COLOR = pygame.Color(0, 255, 0)
 DISTANCE_BAR_BACKGROUND_COLOR = pygame.Color(195, 220, 220)
 DISTANCE_BAR_COLOR = pygame.Color(100, 140, 175)
 
-HEADER_FONT = pygame.font.SysFont('freesanbold', 21)
-SUB_HEADER_FONT = pygame.font.SysFont('freesanbold', 18)
-STAT_FONT = pygame.font.SysFont('freesanbold', 15)
+HEADER_FONT = pygame.font.SysFont("freesanbold", 21)
+SUB_HEADER_FONT = pygame.font.SysFont("freesanbold", 18)
+STAT_FONT = pygame.font.SysFont("freesanbold", 15)
 
 HEADER_FONT_COLOR = pygame.Color(0, 0, 0)
 SUB_HEADER_FONT_COLOR = pygame.Color(0, 0, 0)
@@ -28,26 +28,23 @@ STAT_FONT_COLOR = pygame.Color(0, 0, 0)
 CLOSE_BUTTON_BORDER_COLOR = pygame.Color(255, 255, 255)
 CLOSE_BUTTON_COLOR = pygame.Color(255, 100, 100)
 CLOSE_BUTTON_HOVER_COLOR = pygame.Color(255, 50, 50)
-CLOSE_BUTTON_FONT = pygame.font.SysFont('freesanbold', 60)
+CLOSE_BUTTON_FONT = pygame.font.SysFont("freesanbold", 60)
 CLOSE_BUTTON_FONT_COLOR = pygame.Color(255, 255, 255)
 
 
-
-
 CRITTER_TYPE_DISPLAY_NAMES = {
-    'base': 'Critter',
-    'base_boss': 'Boss Critter',
-    'invisible': 'Stealthy Critter',
-    'invisible_boss': 'Stealthy Boss Critter',
-    'resistant': 'Resistant Critter',
-    'resistant_boss': 'Resistant Critter Boss',
-    'speeder': 'Speedy Critter',
-    'speeder_boss': 'Speedy Critter Boss'
+    "base": "Critter",
+    "base_boss": "Boss Critter",
+    "invisible": "Stealthy Critter",
+    "invisible_boss": "Stealthy Boss Critter",
+    "resistant": "Resistant Critter",
+    "resistant_boss": "Resistant Critter Boss",
+    "speeder": "Speedy Critter",
+    "speeder_boss": "Speedy Critter Boss",
 }
 
 
 class CritterViewer(UIElement):
-
     def __init__(self):
         super().__init__()
         self._critter: Optional[Critter] = None
@@ -73,17 +70,31 @@ class CritterViewer(UIElement):
         health_rectangle = pygame.Rect(left + 5, top + 25, 0, 0)
         surface.blit(health_label, health_rectangle)
 
-        health_bar = StatBar(0, self._critter.starting_health, BAR_BORDER_COLOR, HEALTH_BAR_BACKGROUND_COLOR, HEALTH_BAR_COLOR)
+        health_bar = StatBar(
+            0,
+            self._critter.starting_health,
+            BAR_BORDER_COLOR,
+            HEALTH_BAR_BACKGROUND_COLOR,
+            HEALTH_BAR_COLOR,
+        )
         health_bar.set_value(self._critter.health)
         health_bar.draw(surface, left + 5, top + 40)
 
     def draw_distance_travelled(self, surface, left: int, top: int) -> None:
         distance_message = f"Distance Travelled"
-        distance_label = SUB_HEADER_FONT.render(distance_message, True, SUB_HEADER_FONT_COLOR)
+        distance_label = SUB_HEADER_FONT.render(
+            distance_message, True, SUB_HEADER_FONT_COLOR
+        )
         distance_rectangle = pygame.Rect(left + 5, top + 70, 0, 0)
         surface.blit(distance_label, distance_rectangle)
 
-        distance_bar = StatBar(0, self._critter.total_distance, BAR_BORDER_COLOR, DISTANCE_BAR_BACKGROUND_COLOR, DISTANCE_BAR_COLOR)
+        distance_bar = StatBar(
+            0,
+            self._critter.total_distance,
+            BAR_BORDER_COLOR,
+            DISTANCE_BAR_BACKGROUND_COLOR,
+            DISTANCE_BAR_COLOR,
+        )
         distance_bar.set_value(self._critter.distance_travelled)
         distance_bar.draw(surface, left + 5, top + 85)
 
@@ -94,7 +105,11 @@ class CritterViewer(UIElement):
         self.close_button_rect = border_rectangle
 
         background_rectangle = pygame.Rect(left + 66, top + 106, 58, 38)
-        color_to_draw = CLOSE_BUTTON_HOVER_COLOR if get_state().get_hover(self) else CLOSE_BUTTON_COLOR
+        color_to_draw = (
+            CLOSE_BUTTON_HOVER_COLOR
+            if get_state().get_hover(self)
+            else CLOSE_BUTTON_COLOR
+        )
         pygame.draw.rect(surface, color_to_draw, background_rectangle)
 
         x_label = CLOSE_BUTTON_FONT.render("X", True, CLOSE_BUTTON_FONT_COLOR)

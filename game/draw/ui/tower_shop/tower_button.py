@@ -14,7 +14,7 @@ BACKGROUND_COLOR_DISABLED = pygame.Color(225, 225, 225)
 BORDER_COLOR = pygame.Color(0, 0, 0)
 
 pygame.font.init()
-TEXT_FONT = pygame.font.SysFont('freesanbold', 21)
+TEXT_FONT = pygame.font.SysFont("freesanbold", 21)
 
 TOWER_NAME_FONT_COLOR = pygame.Color(0, 0, 0)
 TOWER_NAME_FONT_COLOR_SELECTED = pygame.Color(255, 255, 255)
@@ -24,7 +24,6 @@ PRICE_FONT_COLOR_DISABLED = pygame.Color(255, 0, 0)
 
 
 class TowerButton(UIElement):
-
     def __init__(self, tower_definition: TowerDefinition):
         super().__init__()
         self.tower_definition = tower_definition
@@ -33,12 +32,18 @@ class TowerButton(UIElement):
 
     def draw(self, surface, left: int, top: int) -> None:
         is_selected = self.is_tower_selected()
-        is_enabled = get_state().get_current_money() >= self.tower_definition.level_one_price
+        is_enabled = (
+            get_state().get_current_money() >= self.tower_definition.level_one_price
+        )
 
         self.draw_border(surface, left, top)
-        self.draw_background(surface, left, top, is_selected=is_selected, is_enabled=is_enabled)
+        self.draw_background(
+            surface, left, top, is_selected=is_selected, is_enabled=is_enabled
+        )
         self.draw_tower_sprite(surface, left, top)
-        self.draw_tower_name(surface, left, top, is_selected=is_selected, is_enabled=is_enabled)
+        self.draw_tower_name(
+            surface, left, top, is_selected=is_selected, is_enabled=is_enabled
+        )
         self.draw_price(surface, left, top, is_enabled=is_enabled)
 
     @staticmethod
@@ -49,7 +54,14 @@ class TowerButton(UIElement):
         rectangle = pygame.Rect(left, top, width, height)
         pygame.draw.rect(surface, BORDER_COLOR, rectangle)
 
-    def draw_background(self, surface, left: int, top: int, is_selected: bool = False, is_enabled: bool = True) -> None:
+    def draw_background(
+        self,
+        surface,
+        left: int,
+        top: int,
+        is_selected: bool = False,
+        is_enabled: bool = True,
+    ) -> None:
         width = 148
         height = 48
 
@@ -68,20 +80,30 @@ class TowerButton(UIElement):
 
         if not is_enabled:
             color_to_draw = BACKGROUND_COLOR_DISABLED
-        
+
         pygame.draw.rect(surface, color_to_draw, rectangle)
 
     def draw_tower_sprite(self, surface, left: int, top: int) -> None:
         rectangle = pygame.Rect(left + 5, top + 12, 0, 0)
         surface.blit(self.tower_sprite, rectangle)
 
-    def draw_tower_name(self, surface, left: int, top: int, is_selected: bool = False, is_enabled: bool = True) -> None:
+    def draw_tower_name(
+        self,
+        surface,
+        left: int,
+        top: int,
+        is_selected: bool = False,
+        is_enabled: bool = True,
+    ) -> None:
 
-        color_to_draw = TOWER_NAME_FONT_COLOR_SELECTED if is_selected else TOWER_NAME_FONT_COLOR
+        color_to_draw = (
+            TOWER_NAME_FONT_COLOR_SELECTED if is_selected else TOWER_NAME_FONT_COLOR
+        )
         color_to_draw = color_to_draw if is_enabled else TOWER_NAME_FONT_COLOR_DISABLED
 
-        tower_name_label = TEXT_FONT.render(self.tower_definition.tower_human_readable_name, True,
-                                            color_to_draw)
+        tower_name_label = TEXT_FONT.render(
+            self.tower_definition.tower_human_readable_name, True, color_to_draw
+        )
 
         rectangle = pygame.Rect(left + 35, top + 18, 0, 0)
         surface.blit(tower_name_label, rectangle)
@@ -90,14 +112,18 @@ class TowerButton(UIElement):
 
         color_to_draw = PRICE_FONT_COLOR if is_enabled else PRICE_FONT_COLOR_DISABLED
 
-        price_label = TEXT_FONT.render(f"${self.tower_definition.level_one_price}", True, color_to_draw)
+        price_label = TEXT_FONT.render(
+            f"${self.tower_definition.level_one_price}", True, color_to_draw
+        )
 
         rectangle = pygame.Rect(left + 120, top + 18, 0, 0)
         surface.blit(price_label, rectangle)
 
     def update_mouse(self, mouse_position, mouse_clicked) -> None:
         state = get_state()
-        is_enabled = get_state().get_current_money() >= self.tower_definition.level_one_price
+        is_enabled = (
+            get_state().get_current_money() >= self.tower_definition.level_one_price
+        )
 
         if self.rect.collidepoint(mouse_position) and is_enabled:
             state.set_hover(self, True)
@@ -113,4 +139,3 @@ class TowerButton(UIElement):
 
     def is_tower_selected(self) -> bool:
         return get_state().get_selected_tower_definition() == self.tower_definition
-

@@ -6,7 +6,6 @@ from game.state import get_state
 
 
 class CritterMaster(UIElement):
-
     def __init__(self):
         super().__init__()
         self.critter_elements: Dict[str, CritterElement] = {}
@@ -28,7 +27,9 @@ class CritterMaster(UIElement):
         dead_critter_ids = expected_critter_ids - actual_critter_ids
 
         for new_critter_id in new_critter_ids:
-            self.critter_elements[new_critter_id] = CritterElement(state.get_critter(new_critter_id))
+            self.critter_elements[new_critter_id] = CritterElement(
+                state.get_critter(new_critter_id)
+            )
 
         for dead_critter_id in dead_critter_ids:
             del self.critter_elements[dead_critter_id]

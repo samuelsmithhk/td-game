@@ -23,8 +23,9 @@ def run_map_definition_validators(map_definition: Dict[str, Any]) -> None:
 # Validation Functions #
 ########################
 
+
 def root_schema_validator(map_definition: Dict[str, Any]) -> Optional[str]:
-    root_keys = ['board', 'rounds']
+    root_keys = ["board", "rounds"]
 
     for root_key in root_keys:
         if root_key not in map_definition:
@@ -32,111 +33,113 @@ def root_schema_validator(map_definition: Dict[str, Any]) -> Optional[str]:
 
 
 def board_size_validator(map_definition: Dict[str, Any]) -> Optional[str]:
-    board_size = map_definition['board'].get('size')
+    board_size = map_definition["board"].get("size")
 
     if board_size is None:
-        return 'board config missing size key'
+        return "board config missing size key"
 
-    board_width = board_size.get('width')
-    board_height = board_size.get('height')
+    board_width = board_size.get("width")
+    board_height = board_size.get("height")
 
     if board_width is None:
-        return 'board size config is missing width key'
+        return "board size config is missing width key"
 
     if board_height is None:
-        return 'board size config is missing height key'
+        return "board size config is missing height key"
 
     if 0 > board_width >= 40:
-        return 'board width must be greater than 0 and less than 41'
+        return "board width must be greater than 0 and less than 41"
 
     if 0 > board_height >= 10:
-        return 'board height must be greater than 0 and less than 11'
+        return "board height must be greater than 0 and less than 11"
 
 
 def board_spawn_validator(map_definition: Dict[str, Any]) -> Optional[str]:
-    board_spawn = map_definition['board'].get('spawn')
+    board_spawn = map_definition["board"].get("spawn")
 
     if board_spawn is None:
-        return 'board config is missing spawn key'
+        return "board config is missing spawn key"
 
-    spawn_x = board_spawn.get('x')
-    spawn_y = board_spawn.get('y')
+    spawn_x = board_spawn.get("x")
+    spawn_y = board_spawn.get("y")
 
     if spawn_x is None:
-        return 'board spawn config missing x key'
+        return "board spawn config missing x key"
 
     if spawn_y is None:
-        return 'board spawn config missing y key'
+        return "board spawn config missing y key"
 
-    if 0 >= spawn_x >= map_definition['board']['size']['width']:
-        return 'board spawn x must be between 0 and width of board'
+    if 0 >= spawn_x >= map_definition["board"]["size"]["width"]:
+        return "board spawn x must be between 0 and width of board"
 
-    if 0 >= spawn_y >= map_definition['board']['size']['height']:
-        return 'board spawn y must be between 0 and height of board'
+    if 0 >= spawn_y >= map_definition["board"]["size"]["height"]:
+        return "board spawn y must be between 0 and height of board"
 
 
 def board_goal_validator(map_definition: Dict[str, Any]) -> Optional[str]:
-    board_goal = map_definition['board'].get('goal')
+    board_goal = map_definition["board"].get("goal")
 
     if board_goal is None:
-        return 'board config is missing goal key'
+        return "board config is missing goal key"
 
-    goal_x = board_goal.get('x')
-    goal_y = board_goal.get('y')
+    goal_x = board_goal.get("x")
+    goal_y = board_goal.get("y")
 
     if goal_x is None:
-        return 'board goal config missing x key'
+        return "board goal config missing x key"
 
     if goal_y is None:
-        return 'board goal config missing y key'
+        return "board goal config missing y key"
 
-    if 0 >= goal_x >= map_definition['board']['size']['width']:
-        return 'board goal x must be between 0 and width of board'
+    if 0 >= goal_x >= map_definition["board"]["size"]["width"]:
+        return "board goal x must be between 0 and width of board"
 
-    if 0 >= goal_y >= map_definition['board']['size']['height']:
-        return 'board goal y must be between 0 and height of board'
+    if 0 >= goal_y >= map_definition["board"]["size"]["height"]:
+        return "board goal y must be between 0 and height of board"
 
-    spawn_x = map_definition['board']['spawn']['x']
-    spawn_y = map_definition['board']['spawn']['y']
+    spawn_x = map_definition["board"]["spawn"]["x"]
+    spawn_y = map_definition["board"]["spawn"]["y"]
 
     if spawn_x == goal_x and spawn_y == goal_y:
-        return 'board spawn and goal cannot be in same location'
+        return "board spawn and goal cannot be in same location"
 
 
 def board_path_validator(map_definition: Dict[str, Any]) -> Optional[str]:
-    board_path = map_definition['board'].get('path')
+    board_path = map_definition["board"].get("path")
 
     if board_path is None:
-        return 'board config is missing path key'
+        return "board config is missing path key"
 
     if not isinstance(board_path, list):
-        return 'board path config must be a list'
+        return "board path config must be a list"
 
     defined_blocks = {}
 
-    spawn_x = map_definition['board']['spawn']['x']
-    spawn_y = map_definition['board']['spawn']['y']
+    spawn_x = map_definition["board"]["spawn"]["x"]
+    spawn_y = map_definition["board"]["spawn"]["y"]
     spawn_in_path = False
 
-    goal_x = map_definition['board']['goal']['x']
-    goal_y = map_definition['board']['goal']['y']
+    goal_x = map_definition["board"]["goal"]["x"]
+    goal_y = map_definition["board"]["goal"]["y"]
     goal_in_path = False
 
     for block_index, block in enumerate(board_path):
-        block_x = block.get('x')
-        block_y = block.get('y')
+        block_x = block.get("x")
+        block_y = block.get("y")
 
         if block_x is None:
-            return f'board path index {block_index} config missing x key'
+            return f"board path index {block_index} config missing x key"
 
         if block_y is None:
-            return f'board path index {block_index} config missing y key'
+            return f"board path index {block_index} config missing y key"
 
         duplicate_key = f"{block_x}~{block_y}"
         duplicate_index = defined_blocks.get(duplicate_key, -1)
 
         if duplicate_index > -1:
-            return f'board path index {block_index} is duplicated with {duplicate_index}'
+            return (
+                f"board path index {block_index} is duplicated with {duplicate_index}"
+            )
 
         defined_blocks[duplicate_key] = block_index
 
@@ -149,24 +152,24 @@ def board_path_validator(map_definition: Dict[str, Any]) -> Optional[str]:
                 goal_in_path = True
 
     if not spawn_in_path:
-        return 'spawn is not in path'
+        return "spawn is not in path"
 
     if not goal_in_path:
-        return 'goal is not in path'
+        return "goal is not in path"
 
     # TODO: Build map and ensure there is a valid path from spawn to goal
 
 
 def rounds_critters_validator(map_definition: Dict[str, Any]) -> Optional[str]:
-    rounds = map_definition['rounds']
+    rounds = map_definition["rounds"]
 
     if not isinstance(rounds, list):
-        return 'rounds config must be a list'
+        return "rounds config must be a list"
 
     valid_critter_types = get_critter_type_names()
 
     for round_index, round_definition in enumerate(rounds):
-        critters = round_definition.get('critters')
+        critters = round_definition.get("critters")
 
         if critters is None:
             return f"round {round_index} config is missing critter key"
@@ -178,7 +181,7 @@ def rounds_critters_validator(map_definition: Dict[str, Any]) -> Optional[str]:
             if not isinstance(critter, dict):
                 return f"round {round_index} critter {critter_index} must be a dict"
 
-            critter_type = critter.get('type')
+            critter_type = critter.get("type")
 
             if critter_type is None:
                 return f"round {round_index} critter {critter_index} config is missing key type"
@@ -186,7 +189,7 @@ def rounds_critters_validator(map_definition: Dict[str, Any]) -> Optional[str]:
             if critter_type not in valid_critter_types:
                 return f"round {round_index} critter {critter_index} type [{critter_type}] is invalid - must be one of {valid_critter_types}"
 
-            critter_health = critter.get('health')
+            critter_health = critter.get("health")
 
             if critter_health is None:
                 return f"round {round_index} critter {critter_index} config is missing health key"
@@ -197,7 +200,7 @@ def rounds_critters_validator(map_definition: Dict[str, Any]) -> Optional[str]:
             if critter_health <= 0:
                 return f"round {round_index} critter {critter_index} health must be greater than 0"
 
-            critter_speed = critter.get('speed')
+            critter_speed = critter.get("speed")
 
             if critter_speed is None:
                 return f"round {round_index} critter {critter_index} config is missing speed key"
@@ -208,7 +211,7 @@ def rounds_critters_validator(map_definition: Dict[str, Any]) -> Optional[str]:
             if critter_speed <= 0:
                 return f"round {round_index} critter {critter_index} speed must be greater than 0"
 
-            critter_count = critter.get('count')
+            critter_count = critter.get("count")
 
             if critter_count is None:
                 return f"round {round_index} critter {critter_index} config is missing count key"
@@ -226,5 +229,5 @@ VALIDATORS: List[Validator] = [
     Validator(name="Board Spawn Validation", func=board_spawn_validator),
     Validator(name="Board Goal Validation", func=board_goal_validator),
     Validator(name="Board Path Validation", func=board_path_validator),
-    Validator(name="Round Critters Validation", func=rounds_critters_validator)
+    Validator(name="Round Critters Validation", func=rounds_critters_validator),
 ]

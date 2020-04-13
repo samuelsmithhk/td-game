@@ -8,7 +8,6 @@ from map.map import Round, Board
 
 
 class Sim:
-
     def __init__(self, game_board: Board, game_round: Round, round_number: int):
         logging.info(f"Starting round {round_number}")
         self.sim_time = 0
@@ -19,7 +18,9 @@ class Sim:
         get_state().set_round_number(round_number)
 
     @staticmethod
-    def generate_spawn_timers(game_round: Round, round_number: int) -> List[Tuple[int, partial]]:
+    def generate_spawn_timers(
+        game_round: Round, round_number: int
+    ) -> List[Tuple[int, partial]]:
         spawn_timers: List[Tuple[int, partial]] = []
         spawn_time_delta = 1500 - (round_number * 60)
         spawn_time_delta = 150 if spawn_time_delta < 150 else spawn_time_delta
@@ -171,8 +172,11 @@ class Sim:
         state = get_state()
 
         for tower in state.get_all_plopped_towers():
-            if not tower.is_reloaded() and tower.get_plop_id() not in self.reload_timers:
-                reload_time = tower.ploppable.get_tower_stats()['reload_time']
+            if (
+                not tower.is_reloaded()
+                and tower.get_plop_id() not in self.reload_timers
+            ):
+                reload_time = tower.ploppable.get_tower_stats()["reload_time"]
                 self.reload_timers[tower.get_plop_id()] = self.sim_time + reload_time
 
     def all_critters_killed(self) -> bool:

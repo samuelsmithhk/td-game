@@ -6,7 +6,6 @@ from tower.ploppable import Ploppable
 
 
 class TowerManagerButton(UIElement, ABC):
-
     def __init__(self):
         super().__init__()
         self.tower = None

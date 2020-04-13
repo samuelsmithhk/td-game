@@ -48,7 +48,9 @@ def start_game(game_map: Map) -> None:
         game_map_ui.update_mouse(mouse_position, mouse_clicked)
         game_map_ui.draw(game_screen, 0, 0)
         plopped_master.update_mouse(mouse_position, mouse_clicked)
-        plopped_master.draw(game_screen, game_map_ui.left_offset * 40, game_map_ui.top_offset * 40)
+        plopped_master.draw(
+            game_screen, game_map_ui.left_offset * 40, game_map_ui.top_offset * 40
+        )
         game_map_ui.update_mouse_clicked(mouse_position, mouse_clicked)
         tower_bar.update_mouse(mouse_position, mouse_clicked)
         tower_bar.draw(game_screen, 0, 400)
@@ -64,7 +66,9 @@ def start_game(game_map: Map) -> None:
         player_stats.draw(game_screen, 600, 550)
         critter_master.set_clock_tick(clock_tick)
         critter_master.update_mouse(mouse_position, mouse_clicked)
-        critter_master.draw(game_screen, game_map_ui.left_offset * 40, game_map_ui.top_offset * 40)
+        critter_master.draw(
+            game_screen, game_map_ui.left_offset * 40, game_map_ui.top_offset * 40
+        )
         cursor.update_mouse(mouse_position, mouse_clicked)
         cursor.draw(game_screen, 0, 0)
 
@@ -77,13 +81,15 @@ def start_game(game_map: Map) -> None:
             round_number += 1
 
             if round_number < len(game_map.rounds):
-                sim = Sim(game_map.board, game_map.rounds[round_number], round_number + 1)
+                sim = Sim(
+                    game_map.board, game_map.rounds[round_number], round_number + 1
+                )
             else:
                 game_finished = True
 
 
 def init_pygame():
-    icon = load_sprite('tower_basic_large')
+    icon = load_sprite("tower_basic_large")
     pygame.display.set_icon(icon)
     game_screen = pygame.display.set_mode(size=(800, 600))
     pygame.mouse.set_visible(False)

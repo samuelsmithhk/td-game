@@ -8,7 +8,6 @@ WATER_COLOR_HOVER = pygame.Color(150, 0, 0)
 
 
 class WaterTile(Tile):
-
     def __init__(self):
         super().__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -20,7 +19,9 @@ class WaterTile(Tile):
         rectangle = pygame.Rect(left, top, width, height)
         self.rect = rectangle
 
-        color_to_draw = WATER_COLOR_HOVER if get_state().get_hover(self) else WATER_COLOR
+        color_to_draw = (
+            WATER_COLOR_HOVER if get_state().get_hover(self) else WATER_COLOR
+        )
         pygame.draw.rect(surface, color_to_draw, rectangle)
 
     def update_mouse(self, mouse_position, mouse_clicked) -> None:

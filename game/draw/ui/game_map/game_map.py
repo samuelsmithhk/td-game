@@ -12,7 +12,6 @@ from map.map import Map, Board
 
 
 class GameMap(UIElement):
-
     def __init__(self, game_map: Map):
         super().__init__()
         self.left_offset = 0
@@ -34,8 +33,12 @@ class GameMap(UIElement):
                 tile_key = f"{column}~{row}"
                 tile = WaterTile()
 
-                if self.is_tile_in_playable_boundary(tile_coordinates, playable_boundaries):
-                    if self.is_tile_on_critter_path(playable_boundaries, tile_coordinates, board.path):
+                if self.is_tile_in_playable_boundary(
+                    tile_coordinates, playable_boundaries
+                ):
+                    if self.is_tile_on_critter_path(
+                        playable_boundaries, tile_coordinates, board.path
+                    ):
                         tile = PathTile()
                     else:
                         tile = LandTile()
@@ -45,17 +48,31 @@ class GameMap(UIElement):
         return tiles
 
     @staticmethod
-    def is_tile_in_playable_boundary(tile_coordinates: Tuple[int, int], playable_boundaries: Tuple[int, int, int, int]) -> bool:
+    def is_tile_in_playable_boundary(
+        tile_coordinates: Tuple[int, int],
+        playable_boundaries: Tuple[int, int, int, int],
+    ) -> bool:
         tile_column, tile_row = tile_coordinates
-        left_boundary, top_boundary, right_boundary, bottom_boundary = playable_boundaries
+        (
+            left_boundary,
+            top_boundary,
+            right_boundary,
+            bottom_boundary,
+        ) = playable_boundaries
 
-        if (left_boundary <= tile_column <= right_boundary) and (top_boundary <= tile_row <= bottom_boundary):
+        if (left_boundary <= tile_column <= right_boundary) and (
+            top_boundary <= tile_row <= bottom_boundary
+        ):
             return True
 
         return False
 
     @staticmethod
-    def is_tile_on_critter_path(playable_boundaries: Tuple[int, int, int, int], tile_coordinates: Tuple[int, int], critter_path: List[Tuple[int, int]]):
+    def is_tile_on_critter_path(
+        playable_boundaries: Tuple[int, int, int, int],
+        tile_coordinates: Tuple[int, int],
+        critter_path: List[Tuple[int, int]],
+    ):
         left_boundary, top_boundary, _, _ = playable_boundaries
         tile_column, tile_row = tile_coordinates
 
@@ -104,7 +121,9 @@ class GameMap(UIElement):
 
             for column in range(0, 20):
                 for row in range(0, 20):
-                    self.tiles[f"{column}~{row}"].update_mouse(mouse_position, mouse_clicked)
+                    self.tiles[f"{column}~{row}"].update_mouse(
+                        mouse_position, mouse_clicked
+                    )
 
         else:
             state.set_cursor_in_playable_space(False)
@@ -112,4 +131,6 @@ class GameMap(UIElement):
     def update_mouse_clicked(self, mouse_position, mouse_clicked):
         for column in range(0, 20):
             for row in range(0, 20):
-                self.tiles[f"{column}~{row}"].update_mouse_clicked(mouse_position, mouse_clicked)
+                self.tiles[f"{column}~{row}"].update_mouse_clicked(
+                    mouse_position, mouse_clicked
+                )

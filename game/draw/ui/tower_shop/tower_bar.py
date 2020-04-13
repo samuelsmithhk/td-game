@@ -6,7 +6,6 @@ from tower.util import get_tower_names_ui_order, get_tower_definition
 
 
 class TowerBar(UIElement):
-
     def __init__(self):
         super().__init__()
         self.tower_buttons = self.load_tower_buttons()
@@ -25,4 +24,6 @@ class TowerBar(UIElement):
     @staticmethod
     def load_tower_buttons() -> List[TowerButton]:
         tower_names = get_tower_names_ui_order()
-        return [TowerButton(get_tower_definition(tower_name)) for tower_name in tower_names]
+        return [
+            TowerButton(get_tower_definition(tower_name)) for tower_name in tower_names
+        ]

@@ -13,10 +13,23 @@ def main(args: argparse.Namespace) -> None:
 
 def load_args() -> argparse.Namespace:
     ap = argparse.ArgumentParser()
-    ap.add_argument('--map', '-m', help='Map name to load', type=str, default='1', choices=['1'])
-    ap.add_argument('--difficulty', '-d', help='Difficulty mode, 1=easy, 2=medium, 3=hard', type=int, default=1,
-                    choices=[1, 2, 3])
-    ap.add_argument('--log_level', '-l', default='info', choices=['debug', 'info', 'warning', 'error', 'critical'])
+    ap.add_argument(
+        "--map", "-m", help="Map name to load", type=str, default="1", choices=["1"]
+    )
+    ap.add_argument(
+        "--difficulty",
+        "-d",
+        help="Difficulty mode, 1=easy, 2=medium, 3=hard",
+        type=int,
+        default=1,
+        choices=[1, 2, 3],
+    )
+    ap.add_argument(
+        "--log_level",
+        "-l",
+        default="info",
+        choices=["debug", "info", "warning", "error", "critical"],
+    )
 
     args = ap.parse_args()
     return args
@@ -24,11 +37,11 @@ def load_args() -> argparse.Namespace:
 
 def configure_logging(args: argparse.Namespace) -> None:
     log_levels = {
-        'debug': logging.DEBUG,
-        'info': logging.INFO,
-        'warning': logging.WARNING,
-        'error': logging.ERROR,
-        'critical': logging.CRITICAL
+        "debug": logging.DEBUG,
+        "info": logging.INFO,
+        "warning": logging.WARNING,
+        "error": logging.ERROR,
+        "critical": logging.CRITICAL,
     }
 
     logger = logging.getLogger()
@@ -37,13 +50,13 @@ def configure_logging(args: argparse.Namespace) -> None:
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(log_levels[args.log_level])
 
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
     stream_handler.setFormatter(formatter)
 
     logger.addHandler(stream_handler)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     _args = load_args()
     configure_logging(_args)
     main(_args)

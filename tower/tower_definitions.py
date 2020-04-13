@@ -42,7 +42,7 @@ class TowerDefinition(NamedTuple):
             2: self.level_two,
             3: self.level_three,
             4: self.level_four,
-            5: self.level_five
+            5: self.level_five,
         }[level]
 
     def get_upgrade_price(self, current_level: int) -> int:
@@ -51,8 +51,9 @@ class TowerDefinition(NamedTuple):
             2: self.level_three_price,
             3: self.level_four_price,
             4: self.level_five_price,
-            5: -1
+            5: -1,
         }[current_level]
+
 
 ######################
 # region Definitions #
@@ -67,7 +68,7 @@ basic_level_one = TowerLevelDefinition(
     reload_time_milliseconds=550,
     damage_per_shot=10,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 basic_level_two = TowerLevelDefinition(
@@ -75,7 +76,7 @@ basic_level_two = TowerLevelDefinition(
     reload_time_milliseconds=520,
     damage_per_shot=12,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 basic_level_three = TowerLevelDefinition(
@@ -83,7 +84,7 @@ basic_level_three = TowerLevelDefinition(
     reload_time_milliseconds=480,
     damage_per_shot=14,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 basic_level_four = TowerLevelDefinition(
@@ -91,7 +92,7 @@ basic_level_four = TowerLevelDefinition(
     reload_time_milliseconds=440,
     damage_per_shot=16,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 basic_level_five = TowerLevelDefinition(
@@ -99,31 +100,25 @@ basic_level_five = TowerLevelDefinition(
     reload_time_milliseconds=420,
     damage_per_shot=19,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 basic_tower = TowerDefinition(
-    tower_name='basic',
-    tower_human_readable_name='Basic',
-
-    description_line_1='Average damage, fire rate, range',
-    description_line_2='No special abilities',
-    description_line_3='Good for base & resistant critters',
-
+    tower_name="basic",
+    tower_human_readable_name="Basic",
+    description_line_1="Average damage, fire rate, range",
+    description_line_2="No special abilities",
+    description_line_3="Good for base & resistant critters",
     level_one=basic_level_one,
     level_one_price=30,
-
     level_two=basic_level_two,
     level_two_price=6,
-
     level_three=basic_level_three,
     level_three_price=12,
-
     level_four=basic_level_four,
     level_four_price=18,
-
     level_five=basic_level_five,
-    level_five_price=24
+    level_five_price=24,
 )
 
 # Machine Gun Tower #
@@ -134,7 +129,7 @@ machine_gun_level_one = TowerLevelDefinition(
     reload_time_milliseconds=200,
     damage_per_shot=5,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 machine_gun_level_two = TowerLevelDefinition(
@@ -142,7 +137,7 @@ machine_gun_level_two = TowerLevelDefinition(
     reload_time_milliseconds=180,
     damage_per_shot=8,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 machine_gun_level_three = TowerLevelDefinition(
@@ -150,7 +145,7 @@ machine_gun_level_three = TowerLevelDefinition(
     reload_time_milliseconds=180,
     damage_per_shot=10,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 machine_gun_level_four = TowerLevelDefinition(
@@ -158,7 +153,7 @@ machine_gun_level_four = TowerLevelDefinition(
     reload_time_milliseconds=140,
     damage_per_shot=13,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 machine_gun_level_five = TowerLevelDefinition(
@@ -166,31 +161,25 @@ machine_gun_level_five = TowerLevelDefinition(
     reload_time_milliseconds=120,
     damage_per_shot=15,
     slows_enemy=False,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 machine_gun_tower = TowerDefinition(
-    tower_name='machine_gun',
-    tower_human_readable_name='Rapid',
-
-    description_line_1='Low damage, range.',
-    description_line_2='Fast fire rate. Good for speeders',
-    description_line_3='No special abilities',
-
+    tower_name="machine_gun",
+    tower_human_readable_name="Rapid",
+    description_line_1="Low damage, range.",
+    description_line_2="Fast fire rate. Good for speeders",
+    description_line_3="No special abilities",
     level_one=machine_gun_level_one,
     level_one_price=35,
-
     level_two=machine_gun_level_two,
     level_two_price=7,
-
     level_three=machine_gun_level_three,
     level_three_price=14,
-
     level_four=machine_gun_level_four,
     level_four_price=21,
-
     level_five=machine_gun_level_five,
-    level_five_price=28
+    level_five_price=28,
 )
 
 # Sniper Tower #
@@ -201,7 +190,7 @@ sniper_level_one = TowerLevelDefinition(
     reload_time_milliseconds=1000,
     damage_per_shot=50,
     slows_enemy=False,
-    sees_invisible=True
+    sees_invisible=True,
 )
 
 sniper_level_two = TowerLevelDefinition(
@@ -209,7 +198,7 @@ sniper_level_two = TowerLevelDefinition(
     reload_time_milliseconds=950,
     damage_per_shot=60,
     slows_enemy=False,
-    sees_invisible=True
+    sees_invisible=True,
 )
 
 sniper_level_three = TowerLevelDefinition(
@@ -217,7 +206,7 @@ sniper_level_three = TowerLevelDefinition(
     reload_time_milliseconds=900,
     damage_per_shot=70,
     slows_enemy=False,
-    sees_invisible=True
+    sees_invisible=True,
 )
 
 sniper_level_four = TowerLevelDefinition(
@@ -225,7 +214,7 @@ sniper_level_four = TowerLevelDefinition(
     reload_time_milliseconds=850,
     damage_per_shot=75,
     slows_enemy=False,
-    sees_invisible=True
+    sees_invisible=True,
 )
 
 sniper_level_five = TowerLevelDefinition(
@@ -233,31 +222,25 @@ sniper_level_five = TowerLevelDefinition(
     reload_time_milliseconds=800,
     damage_per_shot=85,
     slows_enemy=False,
-    sees_invisible=True
+    sees_invisible=True,
 )
 
 sniper_tower = TowerDefinition(
-    tower_name='sniper',
-    tower_human_readable_name='Snipe',
-
-    description_line_1='Great range, damage',
-    description_line_2='Slow fire rate.',
-    description_line_3='Sees invisible critters',
-
+    tower_name="sniper",
+    tower_human_readable_name="Snipe",
+    description_line_1="Great range, damage",
+    description_line_2="Slow fire rate.",
+    description_line_3="Sees invisible critters",
     level_one=sniper_level_one,
     level_one_price=55,
-
     level_two=sniper_level_two,
     level_two_price=11,
-
     level_three=sniper_level_three,
     level_three_price=22,
-
     level_four=sniper_level_four,
     level_four_price=33,
-
     level_five=sniper_level_five,
-    level_five_price=44
+    level_five_price=44,
 )
 
 # Glue Tower #
@@ -268,7 +251,7 @@ glue_level_one = TowerLevelDefinition(
     reload_time_milliseconds=750,
     damage_per_shot=1,
     slows_enemy=True,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 glue_level_two = TowerLevelDefinition(
@@ -276,7 +259,7 @@ glue_level_two = TowerLevelDefinition(
     reload_time_milliseconds=730,
     damage_per_shot=1,
     slows_enemy=True,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 glue_level_three = TowerLevelDefinition(
@@ -284,7 +267,7 @@ glue_level_three = TowerLevelDefinition(
     reload_time_milliseconds=710,
     damage_per_shot=2,
     slows_enemy=True,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 glue_level_four = TowerLevelDefinition(
@@ -292,7 +275,7 @@ glue_level_four = TowerLevelDefinition(
     reload_time_milliseconds=690,
     damage_per_shot=4,
     slows_enemy=True,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 glue_level_five = TowerLevelDefinition(
@@ -300,29 +283,23 @@ glue_level_five = TowerLevelDefinition(
     reload_time_milliseconds=670,
     damage_per_shot=8,
     slows_enemy=True,
-    sees_invisible=False
+    sees_invisible=False,
 )
 
 glue_tower = TowerDefinition(
-    tower_name='glue',
-    tower_human_readable_name='Glue',
-
-    description_line_1='Slows down enemies',
-    description_line_2='Moderate fire rate, range',
-    description_line_3='No effect on resistant critters',
-
+    tower_name="glue",
+    tower_human_readable_name="Glue",
+    description_line_1="Slows down enemies",
+    description_line_2="Moderate fire rate, range",
+    description_line_3="No effect on resistant critters",
     level_one=glue_level_one,
     level_one_price=25,
-
     level_two=glue_level_two,
     level_two_price=5,
-
     level_three=glue_level_three,
     level_three_price=10,
-
     level_four=glue_level_four,
     level_four_price=15,
-
     level_five=glue_level_five,
-    level_five_price=20
+    level_five_price=20,
 )

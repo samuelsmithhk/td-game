@@ -13,7 +13,6 @@ def get_state():
 
 
 class _State:
-
     def __init__(self):
         self._selected_tower_definition: Optional[TowerDefinition] = None
         self._current_hover: Optional[UIElement] = None
@@ -31,7 +30,9 @@ class _State:
         self._round_number = 0
         self._lives = 50
 
-    def set_selected_tower_definition(self, tower_definition: Optional[TowerDefinition]) -> None:
+    def set_selected_tower_definition(
+        self, tower_definition: Optional[TowerDefinition]
+    ) -> None:
         self._selected_tower_definition = tower_definition
 
         if tower_definition:

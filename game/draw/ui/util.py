@@ -2,7 +2,7 @@ import os
 import pygame
 
 DIR_NAME = os.path.dirname(os.path.realpath(__file__))
-SPRITES_PATH = os.path.join(DIR_NAME, '..', '..', '..', 'resources', 'sprites')
+SPRITES_PATH = os.path.join(DIR_NAME, "..", "..", "..", "resources", "sprites")
 
 
 def load_sprite(sprite_name):
