@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class UIElement(ABC):
-
     def __init__(self):
         self.enabled = True
         self.clicked = False

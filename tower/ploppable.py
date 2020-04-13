@@ -6,7 +6,6 @@ from tower.tower_definitions import TowerDefinition
 
 
 class Ploppable:
-
     def __init__(self, tower_definition: TowerDefinition, current_level: int = 1):
         self._plop_id = str(uuid.uuid4())
         self._tower_definition = tower_definition
@@ -41,7 +40,9 @@ class Ploppable:
 
         if self._current_level < 5:
             self._current_level += 1
-            logging.info(f"{self.get_plop_id()} upgraded to level {self.get_current_level()}")
+            logging.info(
+                f"{self.get_plop_id()} upgraded to level {self.get_current_level()}"
+            )
 
         return upgrade_price
 
@@ -50,9 +51,9 @@ class Ploppable:
 
     def shoot(self, critter):
         self._shots += 1
-        self._damage += self.get_tower_stats()['damage']
+        self._damage += self.get_tower_stats()["damage"]
 
-        if critter.health <= self.get_tower_stats()['damage']:
+        if critter.health <= self.get_tower_stats()["damage"]:
             self._kills += 1
 
     def get_sell_value(self):
@@ -60,26 +61,26 @@ class Ploppable:
 
     def get_credits(self) -> Dict[str, Any]:
         return {
-            'rounds': self._rounds,
-            'shots': self._shots,
-            'damage': self._damage,
-            'kills': self._kills
+            "rounds": self._rounds,
+            "shots": self._shots,
+            "damage": self._damage,
+            "kills": self._kills,
         }
 
     def get_stats_for_level(self, level: int) -> Dict[str, Any]:
         level_definition = self._tower_definition.get_level_definition(level)
 
         stats = {
-            'damage': level_definition.damage_per_shot,
-            'reload_time': level_definition.reload_time_milliseconds,
-            'range': level_definition.range_radius,
-            'special': 'N/A'
+            "damage": level_definition.damage_per_shot,
+            "reload_time": level_definition.reload_time_milliseconds,
+            "range": level_definition.range_radius,
+            "special": "N/A",
         }
 
         if level_definition.sees_invisible:
-            stats['special'] = 'sees invisible'
+            stats["special"] = "sees invisible"
 
         if level_definition.slows_enemy:
-            stats['special'] = 'slows enemy'
+            stats["special"] = "slows enemy"
 
         return stats

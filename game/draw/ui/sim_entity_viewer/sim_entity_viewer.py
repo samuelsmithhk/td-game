@@ -10,7 +10,6 @@ BACKGROUND_COLOR = pygame.Color(185, 185, 185)
 
 
 class SimEntityViewer(UIElement):
-
     def __init__(self):
         super().__init__()
         self.tower_manager = TowerManager()

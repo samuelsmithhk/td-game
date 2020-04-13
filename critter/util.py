@@ -12,14 +12,14 @@ from critter.critter_speeder import Speeder
 from critter.critter_speeder_boss import SpeederBoss
 
 CRITTER_FACTORY = {
-    'base': Base,
-    'base-boss': BaseBoss,
-    'speeder': Speeder,
-    'speeder-boss': SpeederBoss,
-    'invisible': Invisible,
-    'invisible-boss': InvisibleBoss,
-    'resistant': Resistant,
-    'resistant-boss': ResistantBoss
+    "base": Base,
+    "base-boss": BaseBoss,
+    "speeder": Speeder,
+    "speeder-boss": SpeederBoss,
+    "invisible": Invisible,
+    "invisible-boss": InvisibleBoss,
+    "resistant": Resistant,
+    "resistant-boss": ResistantBoss,
 }
 
 

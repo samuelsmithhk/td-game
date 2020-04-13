@@ -10,7 +10,6 @@ SELECTED_INDICATOR_COLOR = pygame.Color(0, 0, 0)
 
 
 class CritterElement(UIElement):
-
     def __init__(self, critter: Critter):
         super().__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -21,10 +20,14 @@ class CritterElement(UIElement):
         self.critter_invisible_sprite = None
 
         if critter.can_go_invisible():
-            self.critter_invisible_sprite = load_sprite(f"critter_{critter.type}_invisible")
+            self.critter_invisible_sprite = load_sprite(
+                f"critter_{critter.type}_invisible"
+            )
 
     def draw(self, surface, left: int, top: int) -> None:
-        rectangle = pygame.Rect(left + self.critter.current_x, top + self.critter.current_y, 0, 0)
+        rectangle = pygame.Rect(
+            left + self.critter.current_x, top + self.critter.current_y, 0, 0
+        )
 
         if not self.critter.is_invisible():
             surface.blit(self.critter_sprite, rectangle)
@@ -32,18 +35,29 @@ class CritterElement(UIElement):
             surface.blit(self.critter_invisible_sprite, rectangle)
 
         self.maybe_draw_slowed_indicator(surface, left, top)
-        self.rect = pygame.Rect(rectangle.left, rectangle.top, self.critter_sprite_rect.height, self.critter_sprite_rect.width)
+        self.rect = pygame.Rect(
+            rectangle.left,
+            rectangle.top,
+            self.critter_sprite_rect.height,
+            self.critter_sprite_rect.width,
+        )
 
         self.maybe_draw_selected_indicator(surface)
 
     def maybe_draw_slowed_indicator(self, surface, left: int, top: int) -> None:
         if self.critter.is_slow():
-            center_x = int(self.critter.current_x + left + (self.critter_sprite_rect.width / 2))
-            center_y = int(self.critter.current_y + top + (self.critter_sprite_rect.height / 2))
+            center_x = int(
+                self.critter.current_x + left + (self.critter_sprite_rect.width / 2)
+            )
+            center_y = int(
+                self.critter.current_y + top + (self.critter_sprite_rect.height / 2)
+            )
 
             circle_center = center_x, center_y
             circle_radius = int((self.critter_sprite_rect.width / 2) + 2)
-            pygame.draw.circle(surface, SLOWED_INDICATOR_COLOR, circle_center, circle_radius, 1)
+            pygame.draw.circle(
+                surface, SLOWED_INDICATOR_COLOR, circle_center, circle_radius, 1
+            )
 
     def maybe_draw_selected_indicator(self, surface) -> None:
         if get_state().get_selected_critter() == self.critter:

@@ -16,10 +16,10 @@ DESELECT_COLOR_ONE_HOVER = pygame.Color(255, 50, 50)
 DESELECT_COLOR_TWO = pygame.Color(255, 255, 255)
 
 pygame.font.init()
-HEADER_FONT = pygame.font.SysFont('freesanbold', 30)
-DESCRIPTION_FONT = pygame.font.SysFont('freesanbold', 20)
-UPGRADE_FONT = pygame.font.SysFont('freesanbold', 15)
-DESELECT_FONT = pygame.font.SysFont('freesanbold', 60)
+HEADER_FONT = pygame.font.SysFont("freesanbold", 30)
+DESCRIPTION_FONT = pygame.font.SysFont("freesanbold", 20)
+UPGRADE_FONT = pygame.font.SysFont("freesanbold", 15)
+DESELECT_FONT = pygame.font.SysFont("freesanbold", 60)
 
 HEADER_FONT_COLOR = pygame.Color(0, 0, 0)
 DESCRIPTION_FONT_COLOR = pygame.Color(0, 0, 0)
@@ -29,7 +29,6 @@ DESELECT_FONT_COLOR = pygame.Color(255, 255, 255)
 
 
 class TowerDescription(UIElement):
-
     def __init__(self):
         super().__init__()
         self.deselect_rect = pygame.Rect(0, 0, 0, 0)
@@ -56,7 +55,9 @@ class TowerDescription(UIElement):
             self.draw_tower_sprite(surface, left, top, selected_tower_definition)
             self.draw_tower_name(surface, left, top, selected_tower_definition)
             self.draw_tower_description(surface, left, top, selected_tower_definition)
-            self.draw_tower_upgrade_prices(surface, left, top, selected_tower_definition)
+            self.draw_tower_upgrade_prices(
+                surface, left, top, selected_tower_definition
+            )
             self.draw_tower_deselect_button(surface, left, top)
 
     @staticmethod
@@ -75,26 +76,37 @@ class TowerDescription(UIElement):
         rectangle = pygame.Rect(left + 1, top + 1, width, height)
         pygame.draw.rect(surface, BACKGROUND_COLOR, rectangle)
 
-    def draw_tower_sprite(self, surface, left: int, top: int, tower_definition: TowerDefinition) -> None:
+    def draw_tower_sprite(
+        self, surface, left: int, top: int, tower_definition: TowerDefinition
+    ) -> None:
         rectangle = pygame.Rect(left + 10, top + 12, 0, 0)
         sprite_to_draw = self.tower_sprites[tower_definition.tower_name]
         surface.blit(sprite_to_draw, rectangle)
 
     @staticmethod
-    def draw_tower_name(surface, left: int, top: int, tower_definition: TowerDefinition) -> None:
-        tower_name_label = HEADER_FONT.render(tower_definition.tower_human_readable_name, True, HEADER_FONT_COLOR)
+    def draw_tower_name(
+        surface, left: int, top: int, tower_definition: TowerDefinition
+    ) -> None:
+        tower_name_label = HEADER_FONT.render(
+            tower_definition.tower_human_readable_name, True, HEADER_FONT_COLOR
+        )
 
         rectangle = pygame.Rect(left + 100, top + 12, 0, 0)
         surface.blit(tower_name_label, rectangle)
 
     @staticmethod
-    def draw_tower_description(surface, left: int, top: int, tower_definition: TowerDefinition) -> None:
-        description_one_label = DESCRIPTION_FONT.render(tower_definition.description_line_1, True,
-                                                        DESCRIPTION_FONT_COLOR)
-        description_two_label = DESCRIPTION_FONT.render(tower_definition.description_line_2, True,
-                                                        DESCRIPTION_FONT_COLOR)
-        description_three_label = DESCRIPTION_FONT.render(tower_definition.description_line_3, True,
-                                                          DESCRIPTION_FONT_COLOR)
+    def draw_tower_description(
+        surface, left: int, top: int, tower_definition: TowerDefinition
+    ) -> None:
+        description_one_label = DESCRIPTION_FONT.render(
+            tower_definition.description_line_1, True, DESCRIPTION_FONT_COLOR
+        )
+        description_two_label = DESCRIPTION_FONT.render(
+            tower_definition.description_line_2, True, DESCRIPTION_FONT_COLOR
+        )
+        description_three_label = DESCRIPTION_FONT.render(
+            tower_definition.description_line_3, True, DESCRIPTION_FONT_COLOR
+        )
 
         description_one_rectangle = pygame.Rect(left + 115, top + 40, 0, 0)
         description_two_rectangle = pygame.Rect(left + 115, top + 60, 0, 0)
@@ -104,7 +116,9 @@ class TowerDescription(UIElement):
         surface.blit(description_two_label, description_two_rectangle)
         surface.blit(description_three_label, description_three_rectangle)
 
-    def draw_tower_upgrade_prices(self, surface, left: int, top: int, tower_definition: TowerDefinition) -> None:
+    def draw_tower_upgrade_prices(
+        self, surface, left: int, top: int, tower_definition: TowerDefinition
+    ) -> None:
         width = 180
 
         upgrade_prices = self.get_upgrade_prices(tower_definition)
@@ -112,20 +126,32 @@ class TowerDescription(UIElement):
         height = 19
         top_offset = 0
         for upgrade_level, upgrade_price in enumerate(upgrade_prices):
-            border_rectangle = pygame.Rect(left + 330, top + 12 + top_offset, width, height + 1)
+            border_rectangle = pygame.Rect(
+                left + 330, top + 12 + top_offset, width, height + 1
+            )
             pygame.draw.rect(surface, BORDER_COLOR, border_rectangle)
 
-            background_rectangle = pygame.Rect(left + 331, top + 13 + top_offset, width - 2, height - 1)
+            background_rectangle = pygame.Rect(
+                left + 331, top + 13 + top_offset, width - 2, height - 1
+            )
             pygame.draw.rect(surface, PRICES_BACKGROUND_COLOR, background_rectangle)
 
             upgrade_description_message = f"Upgrade to level {upgrade_level + 2} costs:"
-            upgrade_description_label = UPGRADE_FONT.render(upgrade_description_message, True, DESCRIPTION_FONT_COLOR)
-            upgrade_description_rectangle = pygame.Rect(left + 333, top + 17 + top_offset, 0, 0)
+            upgrade_description_label = UPGRADE_FONT.render(
+                upgrade_description_message, True, DESCRIPTION_FONT_COLOR
+            )
+            upgrade_description_rectangle = pygame.Rect(
+                left + 333, top + 17 + top_offset, 0, 0
+            )
             surface.blit(upgrade_description_label, upgrade_description_rectangle)
 
             upgrade_price_message = f"${upgrade_price}"
-            upgrade_price_label = UPGRADE_FONT.render(upgrade_price_message, True, UPGRADE_PRICE_FONT_COLOR)
-            upgrade_price_rectangle = pygame.Rect(left + 330 + width - 25, top + 17 + top_offset, 0, 0)
+            upgrade_price_label = UPGRADE_FONT.render(
+                upgrade_price_message, True, UPGRADE_PRICE_FONT_COLOR
+            )
+            upgrade_price_rectangle = pygame.Rect(
+                left + 330 + width - 25, top + 17 + top_offset, 0, 0
+            )
             surface.blit(upgrade_price_label, upgrade_price_rectangle)
 
             top_offset += 19
@@ -136,7 +162,7 @@ class TowerDescription(UIElement):
             tower_definition.level_two_price,
             tower_definition.level_three_price,
             tower_definition.level_four_price,
-            tower_definition.level_five_price
+            tower_definition.level_five_price,
         ]
 
     def draw_tower_deselect_button(self, surface, left: int, top: int) -> None:

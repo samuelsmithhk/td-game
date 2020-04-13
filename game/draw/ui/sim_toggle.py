@@ -17,7 +17,6 @@ LIME = pygame.Color(128, 255, 0)
 
 
 class SimToggle(UIElement):
-
     def __init__(self):
         super().__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -55,7 +54,9 @@ class SimToggle(UIElement):
         height = 48
         rectangle = pygame.Rect(left + 1, top + 1, width, height)
 
-        color_to_draw = BACKGROUND_COLOR_PAUSED if is_paused else BACKGROUND_COLOR_UNPAUSED
+        color_to_draw = (
+            BACKGROUND_COLOR_PAUSED if is_paused else BACKGROUND_COLOR_UNPAUSED
+        )
 
         pygame.draw.rect(surface, color_to_draw, rectangle)
 

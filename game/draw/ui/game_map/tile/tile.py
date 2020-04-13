@@ -4,7 +4,6 @@ from game.draw.ui.ui_element import UIElement
 
 
 class Tile(UIElement, ABC):
-
     @abstractmethod
     def update_mouse(self, mouse_position, mouse_clicked) -> None:
         raise NotImplementedError

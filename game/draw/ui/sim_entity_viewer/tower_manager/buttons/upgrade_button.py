@@ -1,12 +1,14 @@
 import pygame
 
-from game.draw.ui.sim_entity_viewer.tower_manager.buttons.button import TowerManagerButton
+from game.draw.ui.sim_entity_viewer.tower_manager.buttons.button import (
+    TowerManagerButton,
+)
 from game.state import get_state
 
 pygame.font.init()
 
-LABEL_FONT = pygame.font.SysFont('freesanbold', 15)
-PRICE_FONT = pygame.font.SysFont('freesanbold', 20)
+LABEL_FONT = pygame.font.SysFont("freesanbold", 15)
+PRICE_FONT = pygame.font.SysFont("freesanbold", 20)
 
 LABEL_FONT_COLOR = pygame.Color(0, 0, 0)
 PRICE_FONT_COLOR = pygame.Color(10, 175, 0)
@@ -20,7 +22,6 @@ BUTTON_COLOR_DISABLED = pygame.Color(255, 255, 230)
 
 
 class UpgradeButton(TowerManagerButton):
-
     def __init__(self):
         super().__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -55,7 +56,9 @@ class UpgradeButton(TowerManagerButton):
     def draw_upgrade_background(self, surface, left: int, top: int) -> None:
         background_rectangle = pygame.Rect(left + 1, top + 1, 58, 38)
 
-        color_to_draw = BUTTON_COLOR_HOVER if get_state().get_hover(self) else BUTTON_COLOR
+        color_to_draw = (
+            BUTTON_COLOR_HOVER if get_state().get_hover(self) else BUTTON_COLOR
+        )
         pygame.draw.rect(surface, color_to_draw, background_rectangle)
 
     @staticmethod
@@ -101,4 +104,7 @@ class UpgradeButton(TowerManagerButton):
         get_state().spend_money(cost)
 
     def is_button_enabled(self) -> bool:
-        return self.tower.is_upgradeable() and self.tower.get_upgrade_price() <= get_state().get_current_money()
+        return (
+            self.tower.is_upgradeable()
+            and self.tower.get_upgrade_price() <= get_state().get_current_money()
+        )

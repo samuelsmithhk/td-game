@@ -31,7 +31,7 @@ def load_game_map(map_name: str) -> Map:
 
 
 def get_map_path(map_name: str) -> str:
-    return os.path.join(DIR_NAME, '..', 'resources', 'maps', f"{map_name}.yml")
+    return os.path.join(DIR_NAME, "..", "resources", "maps", f"{map_name}.yml")
 
 
 def load_map_definition(map_path: str) -> Dict[str, Any]:
@@ -54,8 +54,10 @@ def validate_map_definition(map_definition: Dict[str, Any]) -> None:
 
 
 def parse_map_definition(map_definition: Dict[str, Any]) -> Map:
-    board: Board = parse_board_definition(board_definition=map_definition['board'])
-    rounds: List[Round] = parse_rounds_definition(rounds_definition=map_definition['rounds'])
+    board: Board = parse_board_definition(board_definition=map_definition["board"])
+    rounds: List[Round] = parse_rounds_definition(
+        rounds_definition=map_definition["rounds"]
+    )
 
     return Map(board=board, rounds=rounds)
 
@@ -63,14 +65,16 @@ def parse_map_definition(map_definition: Dict[str, Any]) -> Map:
 def parse_board_definition(board_definition: Dict[str, Any]) -> Board:
     logging.debug("Parsing board definition")
 
-    board_builder = (Board.BoardBuilder()
-                     .set_width(board_definition['size']['width'])
-                     .set_height(board_definition['size']['height'])
-                     .set_spawn(board_definition['spawn']['x'], board_definition['spawn']['y'])
-                     .set_goal(board_definition['goal']['x'], board_definition['goal']['y']))
+    board_builder = (
+        Board.BoardBuilder()
+        .set_width(board_definition["size"]["width"])
+        .set_height(board_definition["size"]["height"])
+        .set_spawn(board_definition["spawn"]["x"], board_definition["spawn"]["y"])
+        .set_goal(board_definition["goal"]["x"], board_definition["goal"]["y"])
+    )
 
-    for path_block in board_definition['path']:
-        board_builder.add_block_to_path(path_block['x'], path_block['y'])
+    for path_block in board_definition["path"]:
+        board_builder.add_block_to_path(path_block["x"], path_block["y"])
 
     return board_builder.build()
 
@@ -80,13 +84,13 @@ def parse_rounds_definition(rounds_definition: List[Dict[str, Any]]) -> List[Rou
     rounds: List[Round] = []
     for round_definition in rounds_definition:
         game_round = Round()
-        critter_definitions = round_definition['critters']
+        critter_definitions = round_definition["critters"]
 
         for critter_definition in critter_definitions:
-            critter_type = critter_definition['type']
-            critter_health = critter_definition['health']
-            critter_speed = critter_definition['speed']
-            critter_count = critter_definition['count']
+            critter_type = critter_definition["type"]
+            critter_health = critter_definition["health"]
+            critter_speed = critter_definition["speed"]
+            critter_count = critter_definition["count"]
 
             critter = get_critter(critter_type, critter_health, critter_speed)
 

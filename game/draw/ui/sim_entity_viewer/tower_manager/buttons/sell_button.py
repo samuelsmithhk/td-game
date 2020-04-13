@@ -1,13 +1,15 @@
 import pygame
 
 from game.draw.ui.plopped.plopped_master import delete_plop
-from game.draw.ui.sim_entity_viewer.tower_manager.buttons.button import TowerManagerButton
+from game.draw.ui.sim_entity_viewer.tower_manager.buttons.button import (
+    TowerManagerButton,
+)
 from game.state import get_state
 
 pygame.font.init()
 
-LABEL_FONT = pygame.font.SysFont('freesanbold', 15)
-VALUE_FONT = pygame.font.SysFont('freesanbold', 20)
+LABEL_FONT = pygame.font.SysFont("freesanbold", 15)
+VALUE_FONT = pygame.font.SysFont("freesanbold", 20)
 
 LABEL_FONT_COLOR = pygame.Color(0, 0, 0)
 VALUE_FONT_COLOR = pygame.Color(10, 150, 20)
@@ -18,7 +20,6 @@ BACKGROUND_COLOR_HOVER = pygame.Color(225, 200, 180)
 
 
 class SellButton(TowerManagerButton):
-
     def __init__(self):
         super().__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -47,7 +48,9 @@ class SellButton(TowerManagerButton):
 
     def draw_background(self, surface, left: int, top: int) -> None:
         background_rectangle = pygame.Rect(left + 1, top + 1, 58, 38)
-        color_to_draw = BACKGROUND_COLOR_HOVER if get_state().get_hover(self) else BACKGROUND_COLOR
+        color_to_draw = (
+            BACKGROUND_COLOR_HOVER if get_state().get_hover(self) else BACKGROUND_COLOR
+        )
         pygame.draw.rect(surface, color_to_draw, background_rectangle)
 
     def draw_label(self, surface, left: int, top: int) -> None:

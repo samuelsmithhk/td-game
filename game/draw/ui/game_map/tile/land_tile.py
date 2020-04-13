@@ -9,7 +9,6 @@ LAND_COLOR_HOVER = pygame.Color(200, 240, 0)
 
 
 class LandTile(Tile):
-
     def __init__(self):
         super().__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -40,7 +39,11 @@ class LandTile(Tile):
             if self.rect.colliderect(get_state().get_cursor_rect()):
                 if mouse_clicked:
                     selected_tower_definition = state.get_selected_tower_definition()
-                    price = selected_tower_definition.level_one_price if selected_tower_definition else 0
+                    price = (
+                        selected_tower_definition.level_one_price
+                        if selected_tower_definition
+                        else 0
+                    )
 
                     plop_success = try_to_plop(mouse_position)
 

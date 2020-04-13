@@ -1,11 +1,13 @@
 import pygame
 
-from game.draw.ui.sim_entity_viewer.tower_manager.buttons.button import TowerManagerButton
+from game.draw.ui.sim_entity_viewer.tower_manager.buttons.button import (
+    TowerManagerButton,
+)
 from game.state import get_state
 
 pygame.font.init()
 
-X_FONT = pygame.font.SysFont('freesanbold', 60)
+X_FONT = pygame.font.SysFont("freesanbold", 60)
 X_FONT_COLOR = pygame.Color(255, 255, 255)
 
 BORDER_COLOR = pygame.Color(255, 255, 255)
@@ -14,7 +16,6 @@ BACKGROUND_COLOR_HOVER = pygame.Color(255, 50, 50)
 
 
 class CloseButton(TowerManagerButton):
-
     def __init__(self):
         super().__init__()
         self.rect = pygame.Rect(0, 0, 0, 0)
@@ -40,7 +41,9 @@ class CloseButton(TowerManagerButton):
 
     def draw_background(self, surface, left: int, top: int) -> None:
         background_rectangle = pygame.Rect(left + 1, top + 1, 58, 38)
-        color_to_draw = BACKGROUND_COLOR_HOVER if get_state().get_hover(self) else BACKGROUND_COLOR
+        color_to_draw = (
+            BACKGROUND_COLOR_HOVER if get_state().get_hover(self) else BACKGROUND_COLOR
+        )
         pygame.draw.rect(surface, color_to_draw, background_rectangle)
 
     @staticmethod

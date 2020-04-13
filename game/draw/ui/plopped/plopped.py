@@ -12,7 +12,6 @@ RANGE_CIRCLE_COLOR = pygame.Color(255, 255, 255)
 
 
 class Plopped(UIElement):
-
     def __init__(self, ploppable: Ploppable, left: int, top: int):
         super().__init__()
         self.ploppable = ploppable
@@ -21,7 +20,9 @@ class Plopped(UIElement):
         self.ts_rect = self.tower_sprites[0].get_rect()
         self.left = left
         self.top = top
-        self.rect = pygame.Rect(self.left, self.top, self.ts_rect.width, self.ts_rect.height)
+        self.rect = pygame.Rect(
+            self.left, self.top, self.ts_rect.width, self.ts_rect.height
+        )
         self._ready_to_shoot = False
 
     @staticmethod
@@ -40,7 +41,9 @@ class Plopped(UIElement):
             self.draw_range_circle(surface)
 
         rectangle = pygame.Rect(self.left, self.top, 0, 0)
-        surface.blit(self.tower_sprites[self.ploppable.get_current_level() - 1], rectangle)
+        surface.blit(
+            self.tower_sprites[self.ploppable.get_current_level() - 1], rectangle
+        )
 
         if state.get_hover(self):
             pygame.draw.rect(surface, HOVER_BORDER_COLOR, self.rect, 1)
@@ -49,12 +52,14 @@ class Plopped(UIElement):
             pygame.draw.rect(surface, SELECTED_BORDER_COLOR, self.rect, 1)
 
     def draw_range_circle(self, surface):
-        tower_range = self.ploppable.get_tower_stats()['range']
+        tower_range = self.ploppable.get_tower_stats()["range"]
         tower_rectangle = self.rect
         center_x = int(tower_rectangle.left + (tower_rectangle.width / 2))
         center_y = int(tower_rectangle.top + (tower_rectangle.height / 2))
 
-        pygame.draw.circle(surface, RANGE_CIRCLE_COLOR, (center_x, center_y), tower_range, 2)
+        pygame.draw.circle(
+            surface, RANGE_CIRCLE_COLOR, (center_x, center_y), tower_range, 2
+        )
 
     def update_mouse(self, mouse_position, mouse_clicked) -> None:
         state = get_state()
@@ -73,7 +78,7 @@ class Plopped(UIElement):
     def shoot(self, critter: Critter) -> int:
         self.ploppable.shoot(critter)
         self._ready_to_shoot = False
-        return self.ploppable.get_tower_stats()['damage']
+        return self.ploppable.get_tower_stats()["damage"]
 
     def reload(self) -> None:
         self._ready_to_shoot = True

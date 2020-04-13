@@ -4,10 +4,18 @@ from functools import partial
 
 from typing import List, Tuple, Optional, Dict, Set
 
-class Board:
 
-    def __init__(self, width: int, height: int, spawn_x: int, spawn_y: int, goal_x: int, goal_y: int,
-                 path: List[Tuple[int, int]]):
+class Board:
+    def __init__(
+        self,
+        width: int,
+        height: int,
+        spawn_x: int,
+        spawn_y: int,
+        goal_x: int,
+        goal_y: int,
+        path: List[Tuple[int, int]],
+    ):
         self.size = width, height
         self.spawn = spawn_x, spawn_y
         self.goal = goal_x, goal_y
@@ -34,7 +42,13 @@ class Board:
         self._bake_all_tile_paths(spawn_key, goal_key, visited_keys, path_buffer)
         self._bake_all_pixel_paths()
 
-    def _bake_all_tile_paths(self, current_key: str, goal_key: str, visited_keys: Dict[str, bool], path_buffer) -> None:
+    def _bake_all_tile_paths(
+        self,
+        current_key: str,
+        goal_key: str,
+        visited_keys: Dict[str, bool],
+        path_buffer,
+    ) -> None:
         visited_keys[current_key] = True
         path_buffer.append(current_key)
 
@@ -45,7 +59,9 @@ class Board:
         else:
             for path_key in self._get_adjacent_path_keys(current_key):
                 if not visited_keys.get(path_key, False):
-                    self._bake_all_tile_paths(path_key, goal_key, visited_keys, path_buffer)
+                    self._bake_all_tile_paths(
+                        path_key, goal_key, visited_keys, path_buffer
+                    )
 
         path_buffer.pop()
         visited_keys[current_key] = False
@@ -73,9 +89,11 @@ class Board:
         self.pixel_paths = pixel_paths
 
     @staticmethod
-    def _get_random_pixel_in_tile(tile_coordinates: str, spawn: bool = False, goal: bool = False) -> Tuple[int, int]:
-        tile_x = int(tile_coordinates.split('~')[0])
-        tile_y = int(tile_coordinates.split('~')[1])
+    def _get_random_pixel_in_tile(
+        tile_coordinates: str, spawn: bool = False, goal: bool = False
+    ) -> Tuple[int, int]:
+        tile_x = int(tile_coordinates.split("~")[0])
+        tile_y = int(tile_coordinates.split("~")[1])
 
         left_bound = tile_x * 40
         top_bound = tile_y * 40
@@ -94,13 +112,13 @@ class Board:
         return pixel_x, pixel_y
 
     def _get_adjacent_path_keys(self, current_key: str) -> List[str]:
-        current_x = int(current_key.split('~')[0])
-        current_y = int(current_key.split('~')[1])
+        current_x = int(current_key.split("~")[0])
+        current_y = int(current_key.split("~")[1])
 
-        left_key = f'{current_x - 1}~{current_y}'
-        top_key = f'{current_x}~{current_y - 1}'
-        right_key = f'{current_x + 1}~{current_y}'
-        bottom_key = f'{current_x}~{current_y + 1}'
+        left_key = f"{current_x - 1}~{current_y}"
+        top_key = f"{current_x}~{current_y - 1}"
+        right_key = f"{current_x + 1}~{current_y}"
+        bottom_key = f"{current_x}~{current_y + 1}"
 
         adjacent_path_keys = []
 
@@ -119,7 +137,6 @@ class Board:
         return adjacent_path_keys
 
     class BoardBuilder:
-
         def __init__(self):
             self.width: Optional[int] = None
             self.height: Optional[int] = None
@@ -152,12 +169,18 @@ class Board:
             return self
 
         def build(self) -> "Board":
-            return Board(width=self.width, height=self.height, spawn_x=self.spawn_x, spawn_y=self.spawn_y,
-                         goal_x=self.goal_x, goal_y=self.goal_y, path=self.path)
+            return Board(
+                width=self.width,
+                height=self.height,
+                spawn_x=self.spawn_x,
+                spawn_y=self.spawn_y,
+                goal_x=self.goal_x,
+                goal_y=self.goal_y,
+                path=self.path,
+            )
 
 
 class Round:
-
     def __init__(self):
         self.waves: List[Tuple[partial, int]] = []
 
@@ -166,7 +189,6 @@ class Round:
 
 
 class Map:
-
     def __init__(self, board: Board, rounds: List[Round]):
         self.board: Board = board
         self.rounds: List[Round] = rounds

@@ -3,13 +3,19 @@ import pygame
 from game.draw.ui.ui_element import UIElement
 
 pygame.font.init()
-LABEL_FONT = pygame.font.SysFont('freesanbold', 15)
+LABEL_FONT = pygame.font.SysFont("freesanbold", 15)
 LABEL_FONT_COLOR = pygame.Color(0, 0, 0)
 
 
 class StatBar(UIElement):
-
-    def __init__(self, min_value: int, max_value: int, border_color: pygame.Color, back_color: pygame.Color, bar_color: pygame.Color):
+    def __init__(
+        self,
+        min_value: int,
+        max_value: int,
+        border_color: pygame.Color,
+        back_color: pygame.Color,
+        bar_color: pygame.Color,
+    ):
         super().__init__()
         self.min_value = min_value
         self.max_value = max_value
