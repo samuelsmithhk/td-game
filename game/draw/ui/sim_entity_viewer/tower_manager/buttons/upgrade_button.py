@@ -5,8 +5,8 @@ from game.state import get_state
 
 pygame.font.init()
 
-LABEL_FONT = pygame.font.SysFont('Verdana', 15)
-PRICE_FONT = pygame.font.SysFont('Verdana', 20)
+LABEL_FONT = pygame.font.SysFont('freesanbold', 15)
+PRICE_FONT = pygame.font.SysFont('freesanbold', 20)
 
 LABEL_FONT_COLOR = pygame.Color(0, 0, 0)
 PRICE_FONT_COLOR = pygame.Color(10, 175, 0)

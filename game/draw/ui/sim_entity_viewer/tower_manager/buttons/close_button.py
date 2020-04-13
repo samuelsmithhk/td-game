@@ -5,7 +5,7 @@ from game.state import get_state
 
 pygame.font.init()
 
-X_FONT = pygame.font.SysFont('Verdana', 60)
+X_FONT = pygame.font.SysFont('freesanbold', 60)
 X_FONT_COLOR = pygame.Color(255, 255, 255)
 
 BORDER_COLOR = pygame.Color(255, 255, 255)

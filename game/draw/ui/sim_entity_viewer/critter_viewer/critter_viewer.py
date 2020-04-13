@@ -17,9 +17,9 @@ HEALTH_BAR_COLOR = pygame.Color(0, 255, 0)
 DISTANCE_BAR_BACKGROUND_COLOR = pygame.Color(195, 220, 220)
 DISTANCE_BAR_COLOR = pygame.Color(100, 140, 175)
 
-HEADER_FONT = pygame.font.SysFont('Verdana', 21)
-SUB_HEADER_FONT = pygame.font.SysFont('Verdana', 18)
-STAT_FONT = pygame.font.SysFont('Verdana', 15)
+HEADER_FONT = pygame.font.SysFont('freesanbold', 21)
+SUB_HEADER_FONT = pygame.font.SysFont('freesanbold', 18)
+STAT_FONT = pygame.font.SysFont('freesanbold', 15)
 
 HEADER_FONT_COLOR = pygame.Color(0, 0, 0)
 SUB_HEADER_FONT_COLOR = pygame.Color(0, 0, 0)
@@ -28,7 +28,7 @@ STAT_FONT_COLOR = pygame.Color(0, 0, 0)
 CLOSE_BUTTON_BORDER_COLOR = pygame.Color(255, 255, 255)
 CLOSE_BUTTON_COLOR = pygame.Color(255, 100, 100)
 CLOSE_BUTTON_HOVER_COLOR = pygame.Color(255, 50, 50)
-CLOSE_BUTTON_FONT = pygame.font.SysFont('Verdana', 60)
+CLOSE_BUTTON_FONT = pygame.font.SysFont('freesanbold', 60)
 CLOSE_BUTTON_FONT_COLOR = pygame.Color(255, 255, 255)
 
 
