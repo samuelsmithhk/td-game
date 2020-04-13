@@ -25,6 +25,7 @@ python td-game.py
 
 * Switching font from Verdana to Freesan Bold, which
 should be universal across OS
+* Formatting code with black
 
 ### 04/11/2020
 
