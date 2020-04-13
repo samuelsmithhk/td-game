@@ -11,8 +11,8 @@ BACKGROUND_COLOR = pygame.Color(185, 185, 185)
 STATS_BACKGROUND_COLOR = pygame.Color(205, 205, 205)
 
 pygame.font.init()
-HEADER_FONT = pygame.font.SysFont('Verdana', 21)
-STAT_FONT = pygame.font.SysFont('Verdana', 15)
+HEADER_FONT = pygame.font.SysFont('freesanbold', 21)
+STAT_FONT = pygame.font.SysFont('freesanbold', 15)
 
 HEADER_FONT_COLOR = pygame.Color(0, 0, 0)
 STAT_FONT_COLOR = pygame.Color(0, 0, 0)

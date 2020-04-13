@@ -21,6 +21,11 @@ python td-game.py
 
 ### Changelog
 
+### 05/11/2020
+
+* Switching font from Verdana to Freesan Bold, which
+should be universal across OS
+
 ### 04/11/2020
 
 * Capping FPS to 30

@@ -9,7 +9,7 @@ BACKGROUND_COLOR = pygame.Color(185, 185, 185)
 
 pygame.font.init()
 
-LABEL_FONT = pygame.font.SysFont('Verdana', 25)
+LABEL_FONT = pygame.font.SysFont('freesanbold', 25)
 LABEL_FONT_COLOR = pygame.Color(0, 0, 0)
 
 

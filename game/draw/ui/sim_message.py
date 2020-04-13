@@ -9,9 +9,9 @@ from map.map import Round
 
 pygame.font.init()
 
-MESSAGE_FONT = pygame.font.SysFont('Verdana', 20)
+MESSAGE_FONT = pygame.font.SysFont('freesanbold', 20)
 MESSAGE_FONT_COLOR = pygame.Color(0, 0, 0)
-STAT_FONT = pygame.font.SysFont('Verdana', 20)
+STAT_FONT = pygame.font.SysFont('freesanbold', 20)
 STAT_FONT_COLOR = pygame.Color(0, 0, 0)
 
 BORDER_COLOR = pygame.Color(0, 0, 0)

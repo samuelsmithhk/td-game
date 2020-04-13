@@ -14,7 +14,7 @@ BACKGROUND_COLOR_DISABLED = pygame.Color(225, 225, 225)
 BORDER_COLOR = pygame.Color(0, 0, 0)
 
 pygame.font.init()
-TEXT_FONT = pygame.font.SysFont('Verdana', 21)
+TEXT_FONT = pygame.font.SysFont('freesanbold', 21)
 
 TOWER_NAME_FONT_COLOR = pygame.Color(0, 0, 0)
 TOWER_NAME_FONT_COLOR_SELECTED = pygame.Color(255, 255, 255)

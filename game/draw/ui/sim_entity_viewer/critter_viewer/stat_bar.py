@@ -3,7 +3,7 @@ import pygame
 from game.draw.ui.ui_element import UIElement
 
 pygame.font.init()
-LABEL_FONT = pygame.font.SysFont('Verdana', 15)
+LABEL_FONT = pygame.font.SysFont('freesanbold', 15)
 LABEL_FONT_COLOR = pygame.Color(0, 0, 0)
 
 
