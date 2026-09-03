@@ -3,9 +3,11 @@ A simple tower defence game implemented in python using pygame
 
 ## Installation
 
-Preferably within a virtual environment, requires python 3.7
+Requires Python 3.13 or earlier (pygame does not yet publish wheels for 3.14+).
 
 ```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -14,7 +16,7 @@ pip install -r requirements.txt
 Within the environment that you installed
 
 ```bash
-python td-game.py
+python td_game.py
 ```
 
 ## Changelog && TODO
